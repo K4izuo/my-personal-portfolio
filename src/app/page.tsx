@@ -3,73 +3,40 @@
 import Image from "next/image";
 import { MapPin, Calendar, ArrowRight, Mail, Download, Info, PanelsTopLeft } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { motion, easeOut } from "framer-motion";
+import { motion } from "framer-motion";
 
 export default function Home() {
-  // Variables remain unchanged
   const headerName = "Cris Justine K. Oracion";
   const headerNameWords = headerName.split(" ");
+
   const addressName = "Tanjay City, Philippines";
   const addressNameWords = addressName.split(" ");
+
   const titleName = "Senior Software Engineer";
   const titleNameWords = titleName.split(" ");
+
   const info1 = "I'm a senior software engineer specializing in developing solutions with JavaScript, Python, and PHP. I work on projects including building modern websites, web applications, mobile apps, search engine optimization, digital marketing, and making code tutorials.";
   const info2 = "I have a passion for creating efficient and scalable software solutions that meet the needs of users and businesses alike.";
   const info3 = "Lately, I&apos;ve been diving deeper into the world of artificial intelligence, focusing on integrating AI tools and techniques into modern applications. My work now includes developing AI-powered solutions scroll down to know about me, what I can do, what are my projects, and how to contact me.";
 
-  // Shared animation variants
-  const fadeIn = {
-    hidden: { opacity: 0, y: -8 },
-    visible: (i = 0) => ({
-      opacity: 1,
-      y: 0,
-      transition: {
-        type: "spring" as const,
-        damping: 25,
-        stiffness: 500,
-        duration: 0.3,
-        delay: 1 + (0.1 * i), // Added 1 second delay
-      }
-    })
-  };
-
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.08,
-        delayChildren: 1.3, // Added 1 second delay (0.3 → 1.3)
-        duration: 0.5
-      }
-    }
-  };
-
-  const borderVariants = {
-    hidden: { opacity: 0, scale: 0.98 },
-    visible: { 
-      opacity: 1, 
-      scale: 1,
-      transition: { 
-        duration: 0.4, 
-        ease: easeOut 
-      }
-    }
-  };
+  const info1Words = info1.split(" ");
+  const info2Words = info2.split(" ");
+  const info3Words = info3.split(" ");
 
   return (
     <main className="min-h-screen flex justify-center px-3">
+      {/* Main content card with fixed height and scroll */}
       <div className="w-[95vw] sm:w-[95%] md:w-full max-w-[360px] sm:max-w-[540px] md:max-w-[720px] lg:max-w-[840px] mx-auto px-1.5 sm:px-4 pt-4 pb-2 sm:pt-5 md:pt-8 md:pb-2">
-        
-        {/* Header Section */}
-        <motion.div 
-          initial="hidden"
-          animate="visible"
-          variants={containerVariants}
-          className="flex flex-col sm:flex-row items-start sm:items-center gap-4 sm:gap-6 w-full mb-6 sm:mb-9"
-        >
-          {/* Profile Image */}
-          <motion.div variants={fadeIn} custom={0}>
+        <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4 sm:gap-6 w-full mb-6 sm:mb-9">
+          <motion.div
+            initial={{ opacity: 0, x: -60, filter: "blur(6px)" }}
+            animate={{ opacity: 1, x: 0, filter: "blur(0px)" }}
+            transition={{ 
+              ease: "easeInOut",
+              duration: 0.6,
+              delay: 0.3  // Increased from 0.1
+            }}
+          >
             <Image
               src="/images/profile3.jpg"
               alt="Profile Image"
@@ -78,28 +45,26 @@ export default function Home() {
               height={160}
             />
           </motion.div>
-
-          {/* Header Info */}
+          {/* Header main */}
           <div className="flex flex-col items-start gap-[2px] flex-1 w-full sm:w-auto">
-            
-            {/* Name */}
+            {/* Header name and icon */}
             <div className="flex items-center w-full flex-wrap">
-              <motion.div 
-                className="flex items-center gap-2 flex-wrap"
-                initial="hidden"
-                animate="visible"
-                variants={containerVariants}
-              >
-                {headerNameWords.map((name, index) => (
+              <div className="flex items-center gap-2 flex-wrap">
+                {headerNameWords.map((name, index) => 
                   <motion.h1
                     key={index}
-                    variants={fadeIn}
-                    custom={index}
+                    initial={{ filter: "blur(6px)", opacity: 0, y: -8 }}
+                    animate={{ filter: "blur(0px)", opacity: 1, y: 0 }}
+                    transition={{ 
+                      type: "spring",
+                      duration: 0.8,
+                      delay: 0.4 + (index * 0.1)  // Increased from 0.2
+                    }}
                     className="text-xl sm:text-2xl font-bold"
                   >
                     {name}
                   </motion.h1>
-                ))}
+                )}
                 <Image
                   src="/images/Vector.png"
                   alt="Icon"
@@ -107,63 +72,73 @@ export default function Home() {
                   width={16}
                   height={16}
                 />
-              </motion.div>
+              </div>
+              {/* Online status */}
               <div className="flex h-6 items-center ml-auto">
                 <div className="w-2.5 h-2.5 rounded-full bg-green-500" />
               </div>
             </div>
-
-            {/* Location */}
-            <motion.div 
-              initial="hidden"
-              animate="visible"
-              variants={containerVariants}
-              className="flex items-center gap-1 relative"
-            >
-              <motion.div variants={fadeIn}>
+            {/* Header Address */}
+            <div className="flex items-center gap-1 relative">
+              <motion.div
+                initial={{ opacity: 0, filter: "blur(3px)" }}
+                animate={{ opacity: 1, filter: "blur(0px)" }}
+                transition={{ 
+                  type: "spring",
+                  duration: 0.5,
+                  delay: 0.8  // Increased from 0.6
+                }}
+              >
                 <MapPin className="w-[14px] h-[14px]" />
               </motion.div>
+
               <div className="flex flex-row flex-wrap gap-x-[3px]">
-                {addressNameWords.map((address, index) => (
+                {addressNameWords.map((address, index) => 
                   <motion.span
                     key={index}
-                    variants={fadeIn}
-                    custom={index}
+                    initial={{ opacity: 0, filter: "blur(6px)" }}
+                    animate={{ opacity: 1, filter: "blur(0px)" }}
+                    transition={{ 
+                      type: "spring",
+                      duration: 0.5,
+                      delay: index * 0.1 + 0.8  // Increased from 0.6
+                    }}
                     className="text-[14px] font-normal"
                   >
                     {address}
                   </motion.span>
-                ))}
+                )}
               </div>
-            </motion.div>
-
-            {/* Title */}
-            <motion.div 
-              initial="hidden"
-              animate="visible"
-              variants={containerVariants}
-              className="flex flex-row flex-wrap gap-x-1"
-            >
-              {titleNameWords.map((title, index) => (
+            </div>
+            {/* Header title */}
+            <div className="flex flex-row flex-wrap gap-x-1">
+              {titleNameWords.map((title, index) => 
                 <motion.p
                   key={index}
-                  variants={fadeIn}
-                  custom={index}
+                  initial={{ opacity: 0, filter: "blur(6px)" }}
+                  animate={{ opacity: 1, filter: "blur(0px)" }}
+                  transition={{ 
+                    type: "spring",
+                    duration: 0.5,
+                    delay: index * 0.1 + 0.8  // Increased from 0.6
+                  }}
                   className="text-[16px] pt-[6px] font-normal"
                 >
                   {title}
                 </motion.p>
-              ))}
-            </motion.div>
-
-            {/* Buttons */}
-            <motion.div 
-              initial="hidden"
-              animate="visible"
-              variants={containerVariants}
-              className="flex flex-wrap pt-[14px] items-start gap-[8px] w-full"
-            >
-              <motion.div variants={fadeIn} custom={0}>
+              )}
+            </div>
+            {/* Header buttons */}
+            <div className="flex flex-wrap pt-[14px] items-start gap-[8px] w-full">
+              <motion.div
+                initial={{ opacity: 0, y: 15, filter: "blur(3px)" }}
+                animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+                transition={{ 
+                  type: "spring",
+                  duration: 0.8,
+                  delay: 0.5  // Increased from 0.2
+                }}
+              >
                 <Button className="flex h-9 px-3 sm:px-4 items-center gap-[6px] rounded-md bg-black text-white text-[12px] cursor-pointer font-medium hover:bg-gray-900 transition">
                   <Calendar className="w-4 h-4 text-white" />
                   <span>Schedule a Call</span>
@@ -171,90 +146,145 @@ export default function Home() {
                 </Button>
               </motion.div>
 
-              <motion.div variants={fadeIn} custom={1}>
+              <motion.div
+                initial={{ opacity: 0, y: 15, filter: "blur(3px)" }}
+                animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+                transition={{ 
+                  type: "spring",
+                  duration: 0.8,
+                  delay: 0.6  // Increased from 0.3
+                }}
+              >
                 <Button className="flex h-9 px-3 sm:px-4 items-center gap-[6px] rounded-md bg-white text-black text-[12px] cursor-pointer font-medium border border-gray-300 hover:bg-gray-100 transition">
                   <Mail className="w-4 h-4 text-black" />
                   <span>Send Email</span>
                 </Button>
               </motion.div>
 
-              <motion.div variants={fadeIn} custom={2}>
+              <motion.div
+                initial={{ opacity: 0, y: 15, filter: "blur(3px)" }}
+                animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+                transition={{ 
+                  type: "spring",
+                  duration: 0.8,
+                  delay: 0.7  // Increased from 0.4
+                }}
+              >
                 <Button className="flex h-9 px-3 sm:px-4 items-center gap-[6px] rounded-md bg-white text-black text-[12px] cursor-pointer font-medium border border-gray-300 hover:bg-gray-100 transition">
                   <Download className="w-4 h-4 text-black" />
                   <span>Download Resume</span>
                 </Button>
               </motion.div>
-            </motion.div>
+            </div>
           </div>
-        </motion.div>
+        </div>
 
-        {/* Info Section */}
+        {/* Info */}
         <div className="relative">
           <motion.div 
-            initial="hidden"
-            animate="visible"
-            variants={borderVariants}
-            transition={{ delay: 1.4 }} // Added 1 second (0.4 → 1.4)
+            initial={{ opacity: 0, scale: 0.95 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ 
+              ease: "easeInOut",
+              duration: 0.5,
+              delay: 1.0  // Increased from 0.8
+            }}
             className="absolute inset-0 border border-gray-200 rounded-md"
           />
-          <motion.div 
-            initial="hidden"
-            animate="visible"
-            variants={containerVariants}
-            className="flex w-full p-[16px] sm:p-[18px] flex-col items-start gap-2 relative z-10 rounded-md transition-shadow hover:shadow-sm"
-          >
-            {/* Info Header */}
+          <div className="flex w-full p-[16px] sm:p-[18px] flex-col items-start gap-2 relative z-10 rounded-md transition-shadow hover:shadow-sm">
+            {/* info icon and h3 */}
             <div className="flex items-center gap-[8px] w-full">
-              <motion.div variants={fadeIn}>
+              <motion.div
+                initial={{ filter: "blur(6px)", opacity: 0, y: -8 }}
+                animate={{ filter: "blur(0px)", opacity: 1, y: 0 }}
+                transition={{ 
+                  type: "spring",
+                  duration: 0.7,
+                  delay: 1.5  // Increased from 1.3
+                }}
+              >
                 <Info className="w-[16px] h-[16px] text-gray-500" />
               </motion.div>
               <motion.h3
-                variants={fadeIn}
+                initial={{ filter: "blur(6px)", opacity: 0, y: -8 }}
+                animate={{ filter: "blur(0px)", opacity: 1, y: 0 }}
+                transition={{ 
+                  type: "spring",
+                  duration: 0.7,
+                  delay: 1.6  // Increased from 1.4
+                }}
                 className="text-[16px] sm:text-[18px] font-semibold"
               >
                 Intro
               </motion.h3>
             </div>
-
-            {/* Paragraphs - optimized to animate by paragraph instead of by word */}
+            {/* info details */}
             <div className="flex flex-col items-start gap-[16px] sm:gap-[22.4px] w-full">
-              <motion.p
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ duration: 0.5, delay: 1.8 }} // Added 1 second (0.8 → 1.8)
-                className="text-[14px] sm:text-sm font-normal text-black"
-              >
-                {info1}
-              </motion.p>
-              
-              <motion.p
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ duration: 0.5, delay: 2.0 }} // Added 1 second (1.0 → 2.0)
-                className="text-[14px] sm:text-sm font-normal text-black"
-              >
-                {info2}
-              </motion.p>
-              
-              <motion.p
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ duration: 0.5, delay: 2.2 }} // Added 1 second (1.2 → 2.2)
-                className="text-[14px] sm:text-sm font-normal text-black"
-              >
-                {info3}
-              </motion.p>
+              <div className="flex flex-row flex-wrap gap-x-1">
+                {info1Words.map((infoWord, index) => 
+                  <motion.p
+                    key={index}
+                    initial={{ opacity: 0, filter: "blur(3px)" }}
+                    animate={{ opacity: 1, filter: "blur(0px)" }}
+                    transition={{ 
+                      type: "spring",
+                      duration: 0.7,
+                      delay: 1.7 + (index * 0.04)  // Increased from 1.5
+                    }}
+                    className="text-[14px] sm:text-sm font-normal text-black"
+                  >
+                    {infoWord}
+                  </motion.p>
+                )}
+              </div>
+              <div className="flex flex-row flex-wrap gap-x-1">
+                {info2Words.map((infoWord, index) => 
+                  <motion.p
+                    key={index}
+                    initial={{ opacity: 0, filter: "blur(3px)" }}
+                    animate={{ opacity: 1, filter: "blur(0px)" }}
+                    transition={{ 
+                      type: "spring",
+                      duration: 0.7,
+                      delay: 1.7 + (info1Words.length * 0.04) + (index * 0.04)  // Increased from 1.5
+                    }}
+                    className="text-[14px] sm:text-sm font-normal text-black"
+                  >
+                    {infoWord}
+                  </motion.p>
+                )}
+              </div>
+              <div className="flex flex-row flex-wrap gap-x-1">
+                {info3Words.map((infoWord, index) => 
+                  <motion.p
+                    key={index}
+                    initial={{ opacity: 0, filter: "blur(3px)" }}
+                    animate={{ opacity: 1, filter: "blur(0px)" }}
+                    transition={{ 
+                      type: "spring",
+                      duration: 0.7,
+                      delay: 1.7 + (info1Words.length * 0.04) + (info2Words.length * 0.04) + (index * 0.04)  // Increased from 1.5
+                    }}
+                    className="text-[14px] sm:text-sm font-normal text-black"
+                  >
+                    {infoWord}
+                  </motion.p>
+                )}
+              </div>
             </div>
-          </motion.div>
+          </div>
         </div>
 
         {/* About, services, projects, and contact */}
         <div className="relative mt-6 sm:mt-9">
           <motion.div 
-            initial="hidden"
-            animate="visible"
-            variants={borderVariants}
-            transition={{ delay: 1.6 }} // Added 1 second (0.6 → 1.6)
+            initial={{ opacity: 0, scale: 0.95 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ 
+              ease: "easeInOut",
+              duration: 0.5,
+              delay: 2.2  // Added animation to Overview section
+            }}
             className="absolute inset-0 border border-gray-200 rounded-md"
           />
           <div className="flex w-full p-[16px] sm:p-[18px] flex-col items-start gap-2 relative z-10 rounded-md transition-shadow hover:shadow-sm">
