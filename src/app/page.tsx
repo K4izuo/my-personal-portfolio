@@ -4,6 +4,7 @@ import Image from "next/image";
 import { MapPin, Calendar, ArrowRight, Mail, Download, Info, PanelsTopLeft } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { motion } from "framer-motion";
+import { fadeInLeft, fadeInDown, fadeInV1, fadeInV2, fadeUpHeaderBTN1, fadeUpHeaderBTN2, fadeUpHeaderBTN3 } from "../../utils/animations";
 
 export default function Home() {
   const headerName = "Cris Justine K. Oracion";
@@ -17,7 +18,7 @@ export default function Home() {
 
   const info1 = "I'm a senior software engineer specializing in developing solutions with JavaScript, Python, and PHP. I work on projects including building modern websites, web applications, mobile apps, search engine optimization, digital marketing, and making code tutorials.";
   const info2 = "I have a passion for creating efficient and scalable software solutions that meet the needs of users and businesses alike.";
-  const info3 = "Lately, I&apos;ve been diving deeper into the world of artificial intelligence, focusing on integrating AI tools and techniques into modern applications. My work now includes developing AI-powered solutions scroll down to know about me, what I can do, what are my projects, and how to contact me.";
+  const info3 = "Lately, I've been diving deeper into the world of artificial intelligence, focusing on integrating AI tools and techniques into modern applications. My work now includes developing AI-powered solutions scroll down to know about me, what I can do, what are my projects, and how to contact me.";
 
   const info1Words = info1.split(" ");
   const info2Words = info2.split(" ");
@@ -29,13 +30,9 @@ export default function Home() {
       <div className="w-[95vw] sm:w-[95%] md:w-full max-w-[360px] sm:max-w-[540px] md:max-w-[720px] lg:max-w-[840px] mx-auto px-1.5 sm:px-4 pt-4 pb-2 sm:pt-5 md:pt-8 md:pb-2">
         <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4 sm:gap-6 w-full mb-6 sm:mb-9">
           <motion.div
-            initial={{ opacity: 0, x: -60, filter: "blur(6px)" }}
-            animate={{ opacity: 1, x: 0, filter: "blur(0px)" }}
-            transition={{ 
-              ease: "easeInOut",
-              duration: 0.6,
-              delay: 0.3  // Increased from 0.1
-            }}
+            variants={fadeInLeft}
+            initial="hidden"
+            animate="visible"
           >
             <Image
               src="/images/profile3.jpg"
@@ -53,13 +50,10 @@ export default function Home() {
                 {headerNameWords.map((name, index) => 
                   <motion.h1
                     key={index}
-                    initial={{ filter: "blur(6px)", opacity: 0, y: -8 }}
-                    animate={{ filter: "blur(0px)", opacity: 1, y: 0 }}
-                    transition={{ 
-                      type: "spring",
-                      duration: 0.8,
-                      delay: 0.4 + (index * 0.1)  // Increased from 0.2
-                    }}
+                    variants={fadeInDown}
+                    initial="hidden"
+                    animate="visible"
+                    custom={index}
                     className="text-xl sm:text-2xl font-bold"
                   >
                     {name}
@@ -81,13 +75,9 @@ export default function Home() {
             {/* Header Address */}
             <div className="flex items-center gap-1 relative">
               <motion.div
-                initial={{ opacity: 0, filter: "blur(3px)" }}
-                animate={{ opacity: 1, filter: "blur(0px)" }}
-                transition={{ 
-                  type: "spring",
-                  duration: 0.5,
-                  delay: 0.8  // Increased from 0.6
-                }}
+                variants={fadeInV1}
+                initial="hidden"
+                animate="visible"
               >
                 <MapPin className="w-[14px] h-[14px]" />
               </motion.div>
@@ -96,13 +86,10 @@ export default function Home() {
                 {addressNameWords.map((address, index) => 
                   <motion.span
                     key={index}
-                    initial={{ opacity: 0, filter: "blur(6px)" }}
-                    animate={{ opacity: 1, filter: "blur(0px)" }}
-                    transition={{ 
-                      type: "spring",
-                      duration: 0.5,
-                      delay: index * 0.1 + 0.8  // Increased from 0.6
-                    }}
+                    variants={fadeInV2}
+                    initial="hidden"
+                    animate="visible"
+                    custom={index}
                     className="text-[14px] font-normal"
                   >
                     {address}
@@ -115,13 +102,10 @@ export default function Home() {
               {titleNameWords.map((title, index) => 
                 <motion.p
                   key={index}
-                  initial={{ opacity: 0, filter: "blur(6px)" }}
-                  animate={{ opacity: 1, filter: "blur(0px)" }}
-                  transition={{ 
-                    type: "spring",
-                    duration: 0.5,
-                    delay: index * 0.1 + 0.8  // Increased from 0.6
-                  }}
+                  variants={fadeInV2}
+                  initial="hidden"
+                  animate="visible"
+                  custom={index}
                   className="text-[16px] pt-[6px] font-normal"
                 >
                   {title}
@@ -131,13 +115,9 @@ export default function Home() {
             {/* Header buttons */}
             <div className="flex flex-wrap pt-[14px] items-start gap-[8px] w-full">
               <motion.div
-                initial={{ opacity: 0, y: 15, filter: "blur(3px)" }}
-                animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
-                transition={{ 
-                  type: "spring",
-                  duration: 0.8,
-                  delay: 0.5  // Increased from 0.2
-                }}
+                variants={fadeUpHeaderBTN1}
+                initial="hidden"
+                animate="visible"
               >
                 <Button className="flex h-9 px-3 sm:px-4 items-center gap-[6px] rounded-md bg-black text-white text-[12px] cursor-pointer font-medium hover:bg-gray-900 transition">
                   <Calendar className="w-4 h-4 text-white" />
@@ -147,13 +127,9 @@ export default function Home() {
               </motion.div>
 
               <motion.div
-                initial={{ opacity: 0, y: 15, filter: "blur(3px)" }}
-                animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
-                transition={{ 
-                  type: "spring",
-                  duration: 0.8,
-                  delay: 0.6  // Increased from 0.3
-                }}
+                variants={fadeUpHeaderBTN2}
+                initial="hidden"
+                animate="visible"
               >
                 <Button className="flex h-9 px-3 sm:px-4 items-center gap-[6px] rounded-md bg-white text-black text-[12px] cursor-pointer font-medium border border-gray-300 hover:bg-gray-100 transition">
                   <Mail className="w-4 h-4 text-black" />
@@ -162,13 +138,9 @@ export default function Home() {
               </motion.div>
 
               <motion.div
-                initial={{ opacity: 0, y: 15, filter: "blur(3px)" }}
-                animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
-                transition={{ 
-                  type: "spring",
-                  duration: 0.8,
-                  delay: 0.7  // Increased from 0.4
-                }}
+                variants={fadeUpHeaderBTN3}
+                initial="hidden"
+                animate="visible"
               >
                 <Button className="flex h-9 px-3 sm:px-4 items-center gap-[6px] rounded-md bg-white text-black text-[12px] cursor-pointer font-medium border border-gray-300 hover:bg-gray-100 transition">
                   <Download className="w-4 h-4 text-black" />
