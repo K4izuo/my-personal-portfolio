@@ -27,7 +27,7 @@ export default function Home() {
   return (
     <main className="min-h-screen flex justify-center px-3">
       {/* Main content card with fixed height and scroll */}
-      <div className="w-[95vw] sm:w-[95%] md:w-full max-w-[360px] sm:max-w-[540px] md:max-w-[720px] lg:max-w-[840px] mx-auto px-1.5 sm:px-4 pt-4 pb-2 sm:pt-5 md:pt-8 md:pb-2">
+      <div className="w-[95vw] sm:w-[95%] md:w-full max-w-[460px] sm:max-w-[660px] md:max-w-[860px] lg:max-w-[960px] mx-auto px-1.5 sm:px-4 pt-4 pb-2 sm:pt-5 md:pt-8 md:pb-2">
         <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4 sm:gap-6 w-full mb-6 sm:mb-9">
           <motion.div
             variants={fadeInLeft}
