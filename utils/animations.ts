@@ -1,17 +1,38 @@
 import { easeInOut } from "framer-motion";
 
+// const fadeIn = {
+//   hidden: { opacity: 0, y: 20 },
+//   visible: (custom = 0) => ({
+//     opacity: 1,
+//     y: 0,
+//     transition: {
+//       duration: 0.5,
+//       delay: 0.2 + custom * 0.2,
+//       ease: "easeOut" as const
+//     }
+//   })
+// };
+
 export const fadeInLeft = {
-  hidden: { opacity: 0, x: -60, filter: "blur(3px)" },
-  visible: {
+  hidden: { opacity: 0, x: -60 },
+  // visible: {
+  //   opacity: 1,
+  //   x: 0,
+  //   transition: {
+  //     ease: easeInOut,
+  //     duration: 0.6,
+  //     delay: 0.3
+  //   }
+  // }
+  visible: (custom = 0) => ({
     opacity: 1,
     x: 0,
-    filter: "blur(0px)",
     transition: {
-      ease: easeInOut,
-      duration: 0.6,
-      delay: 0.3
+      duration: 0.5,
+      delay: 0.2 + custom * 0.2,
+      ease: "easeOut" as const
     }
-  }
+  })
 };
 
 export const fadeInDown = {
